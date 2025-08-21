@@ -1,0 +1,28 @@
+
+<div class="row row-cols-1 row-cols-md-3 g-3 my-3" >
+    @for (pro of filteredProducts ;  track pro.id ; let i = $index) {
+      <div class="col">
+    <div class="card" appHighlightCard="white" externalClass="pink" >
+      <img [src]="pro.imgUrl " class="card-img-top" alt="..." >
+      <div class="card-body" >
+        <h5 class="card-title">{{i+1}} - {{pro.name}}</h5>
+        <p class="card-text">{{pro.price | currency}}</p>
+        @switch (pro.quantity) {
+          @case (1) {
+            <p class="text-warning">Quantity: Last Item</p>
+          }
+          @default {
+            <p class="text-black">Quantity: {{pro.quantity}}</p>
+          }
+        }
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" #countInput>
+          <button type="button" class="btn btn-outline-primary"  (click)="buy(countInput.value, pro.price)">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    }@empty {
+      <h1 class="text-danger">No products available</h1>
+    }
+</div>

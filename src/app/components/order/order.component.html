@@ -1,0 +1,12 @@
+<h1 style="border: 1px solid #000; margin-top: 20px; border-radius: 30px; padding-left: 10px;">{{myDate | date: 'short'}}</h1>
+<select class="form-select" aria-label="Default select example" [(ngModel)]="selectedCatId" >
+    <option value="0"  selected>Open this select menu</option>
+    <option selected *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+</select>
+
+<p style="margin: 50px 0; color: chocolate; font-weight: 500; font-size: 80px;">{{totalPrice | currency}}</p>
+
+
+<div style="margin: 20px 0 ; border: 1px solid #000; border-radius: 30px; padding: 10px;">
+  <app-products [recievedCatId]="selectedCatId" (onTotalPriceChanged)="calcTotalPrice($event)"></app-products>
+</div>
